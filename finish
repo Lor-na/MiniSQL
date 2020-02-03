@@ -1,0 +1,38 @@
+完成度:
+interpreter: 仅 create table
+API：createTable接口
+Catalog：建立表（索引未写）
+
+
+
+tips:
+每次handle一个块 该块文件指针跳转 按blockSize计算中间都空着
+
+db files 得写清楚现在是第几个块了
+
+DBfile : catalog
+
+
+DBfile：record
+写好一共几个块一个int
+一个int 表示块号 跳转偏移量指针可以跳到下一个块之前
+一个int表示freeList长度
+跟着一个freeList序列 x个int
+然后一个块的所有record和一个无意义的0在每个record后面
+
+！！！！！！！！！！！！！！！！
+size和getsize是不同的，size是真的大小，getsize有buffer存取里面的最后一个0
+
+Index File:
+fork 计算： MaxSize / 4 + （键值对）
+存一手根节点的地址
+一个block存freeList以0结尾（如果只有1个有效值表示这是最新的位置，在此处+1存回，freeList的长度不可能小于2）
+之后每一个正常block来说
+一个int 表示是否为leaf 奇数为leaf，偶数不是，奇数减一偶数不变除以2为key个数
+键值对 键+指针（int） 凑4字节对齐
+
+
+没改的地方：
+在charencoding里面加一下，用特殊字符补满整个char，decode的时候把特殊字符strip掉  //fixed
+在createRecord的地方，没有进行unique测试  //fixed
+

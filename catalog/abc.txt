@@ -1,0 +1,1 @@
+{"name": "abc", "primaryKey": "", "column": [{"name": "id", "type": "int", "isUnique": true, "len": 0}, {"name": "name", "type": "char", "isUnique": false, "len": 3}], "size": 7, "blockNum": 9, "index": [["idIndex", "id", "int", 0]]}
